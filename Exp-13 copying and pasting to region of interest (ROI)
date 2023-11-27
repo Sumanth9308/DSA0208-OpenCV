@@ -1,0 +1,21 @@
+import cv2
+
+source_image = cv2.imread("C:/Users/Sumanth/Desktop/Computer Vision Open-CV/download (1).jpeg")
+
+x, y, w, h = 100, 100, 200, 150 
+roi = source_image[y:y+h, x:x+w]
+
+cv2.imshow('Original Image', source_image)
+cv2.imshow('ROI', roi)
+cv2.waitKey(0)
+
+destination_image = np.zeros_like(roi)
+
+destination_image[:roi.shape[0], :roi.shape[1]] = roi
+
+paste_x, paste_y = 300, 200
+source_image[paste_y:paste_y+destination_image.shape[0], paste_x:paste_x+destination_image.shape[1]] = destination_image
+
+cv2.imshow('Modified Image', source_image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
