@@ -1,0 +1,15 @@
+import cv2
+import numpy as np
+
+original_image = cv2.imread("C:/Users/Sumanth/Desktop/Computer Vision Open-CV/2 download.jpeg")
+watermark_image = cv2.imread("C:/Users/Sumanth/Desktop/Computer Vision Open-CV/Watermark-1-.jpg", cv2.IMREAD_UNCHANGED)
+
+watermark_image = cv2.resize(watermark_image, (original_image.shape[1], original_image.shape[0]))
+
+alpha = 0.5
+
+result = cv2.addWeighted(original_image, 1-alpha, watermark_image[:, :, :3], alpha, 0)
+
+cv2.imshow("Watermarked Image", result)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
